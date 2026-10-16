@@ -1,33 +1,26 @@
-# inMind — GitHub Pages starter
+# inMind
 
-A public-first, responsive website for inMind. Visitors can explore the Mindcosmos, Social, MySpace, and Blogs previews without an account. Email/password sign-up is requested only when someone tries to create or save something. Signed-in users' entries are stored privately in Firestore and sync across their devices.
+A fresh, public-first website for GitHub Pages. Visitors can tour the spaces, use the Mindcosmos breathing, grounding, and quiet-light activities, and read the public blog without an account. Signing in is reserved for personal MySpace saves and Social posting or following.
 
 ## Files
 
-- `index.html` — page content and dialogs
-- `styles.css` — responsive design
-- `app.js` — interactions, Firebase Authentication, and Firestore sync
-- `firebase-config.js` — public Firebase web app configuration placeholders
-- `firestore.rules` — owner-only rules for user entries
+- `index.html` — page content and account dialog
+- `styles.css` — responsive, minimal interface
+- `app.js` — public interactions, Firebase Authentication, and Firestore sync
+- `firebase-config.js` — Firebase web configuration placeholders
+- `firestore.rules` — owner-only private data plus public profiles and posts
 
-## Set up Firebase
+## Connect the existing Firebase project
 
-1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
-2. In **Project settings → General → Your apps**, register a Web app and copy its config object into `firebase-config.js`, replacing every placeholder. The Firebase web config is designed to be included in a website; do not put service account keys or private credentials in this file.
-3. In **Authentication → Sign-in method**, enable **Email/Password**.
-4. In **Firestore Database**, create a database. Choose a location close to your users.
-5. Open the Firestore **Rules** tab, replace its contents with `firestore.rules`, and publish.
-6. In **Authentication → Settings → Authorized domains**, add your GitHub Pages host (for example, `yourname.github.io`).
+1. In Firebase Console, open **Project settings → General → Your apps** and copy the web app configuration into `firebase-config.js`.
+2. Enable **Email/Password** under **Authentication → Sign-in method**.
+3. In **Authentication → Settings → Authorized domains**, add the GitHub Pages host.
+4. Publish `firestore.rules` in **Firestore Database → Rules**. Review any existing rules first and merge other required app paths deliberately. Publishing rules changes access permissions; it does not delete Firestore documents.
+
+The new MySpace reads existing private entries under `users/{uid}/entries` and displays legacy title/body notes without migrating or deleting them. New goals and thoughts use the same private per-user path. Social profiles contain only a public display name; posts are public, and following lists are private.
 
 ## Publish on GitHub Pages
 
-1. Copy the contents of this folder into the root of your GitHub repository, keeping all five files together.
-2. Commit and push the files.
-3. In the repository, open **Settings → Pages**. Choose **Deploy from a branch**, select your website branch and `/ (root)`, then save.
-4. Open the published Pages URL over HTTPS. Firebase Authentication and the ES module imports require a web server; opening `index.html` directly as a local file will not work.
+Put these files in the root of the existing website repository, then enable GitHub Pages for that branch and folder. Open the published HTTPS address to use Firebase modules and Authentication. `index.html` opened as a local file does not provide the secure web origin Firebase requires.
 
-## Privacy and scope
-
-The included Firestore rules let each authenticated user read and change only `users/{their uid}/entries/*`. All other paths are denied. The starter stores notes, drafts, and space entries privately. The Social preview is sample content; it does not publish user posts or implement a shared community feed. A real public feed should add moderation, reporting, rate limiting, and carefully scoped public-read rules before launch.
-
-There are no server credentials in this project. Do not paste Firebase service-account JSON or Admin SDK keys into the repository. Firebase web configuration is public by design; use Firebase Authentication, Firestore rules, and Firebase App Check (recommended before a public launch) to protect your project.
+The supplied Firebase config contains placeholders, so account creation, posts, following, and cross-device sync remain unavailable until the real web configuration and Firestore rules are connected. The public tour and Mindcosmos activities work without them. Never put a Firebase service-account key in this site.

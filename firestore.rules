@@ -1,12 +1,110 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Each person's content is private and readable/writable only by that person.
-    match /users/{userId}/entries/{entryId} {
-      allow read, create, update, delete: if request.auth != null
-        && request.auth.uid == userId;
+    function signedIn() {
+      return request.auth != null;
     }
-    // Deny all other access unless an explicit rule is added later.
+
+    function owns(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function validProfile() {
+      return request.resource.data.keys().hasOnly(['displayName', 'joinedAt'])
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() >= 2
+        && request.resource.data.displayName.size() <= 32
+        && request.resource.data.joinedAt is timestamp;
+    }
+
+    function validEntry() {
+      return request.resource.data.keys().hasOnly([
+          'type', 'title', 'body', 'progress', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'type', 'title', 'body', 'progress', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.type in ['goal', 'note']
+        && request.resource.data.title is string
+        && request.resource.data.title.size() >= 1
+        && request.resource.data.title.size() <= 100
+        && request.resource.data.body is string
+        && request.resource.data.body.size() <= 1000
+        && request.resource.data.progress is int
+        && request.resource.data.progress >= 0
+        && request.resource.data.progress <= 100
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
+    }
+
+    function validPost(userId) {
+      let profilePath = /databases/$(database)/documents/users/$(userId);
+      return request.resource.data.keys().hasOnly([
+          'authorId', 'authorName', 'text', 'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'authorId', 'authorName', 'text', 'createdAt'
+        ])
+        && request.resource.data.authorId == userId
+        && request.resource.data.authorName is string
+        && request.resource.data.authorName.size() >= 2
+        && request.resource.data.authorName.size() <= 32
+        && exists(profilePath)
+        && request.resource.data.authorName == get(profilePath).data.displayName
+        && request.resource.data.text is string
+        && request.resource.data.text.size() >= 1
+        && request.resource.data.text.size() <= 500
+        && request.resource.data.createdAt is timestamp;
+    }
+
+    // Public display names are used by the Social directory. Email addresses are never stored here.
+    match /users/{userId} {
+      allow get, list: if true;
+      allow create: if owns(userId) && validProfile();
+      allow update: if owns(userId)
+        && request.resource.data.keys().hasOnly(['displayName', 'joinedAt'])
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() >= 2
+        && request.resource.data.displayName.size() <= 32
+        && request.resource.data.joinedAt == resource.data.joinedAt
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName']);
+      allow delete: if owns(userId);
+
+      // Personal goals, thoughts, and legacy private entries are visible only to their owner.
+      match /entries/{entryId} {
+        allow read: if owns(userId);
+        allow create: if owns(userId) && validEntry();
+        allow update: if owns(userId)
+          && validEntry()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['progress', 'updatedAt']);
+        allow delete: if owns(userId);
+      }
+
+      // A person's following list is private to that account.
+      match /following/{targetId} {
+        allow read: if owns(userId);
+        allow create: if owns(userId)
+          && targetId != userId
+          && exists(/databases/$(database)/documents/users/$(targetId))
+          && request.resource.data.keys().hasOnly(['followedAt'])
+          && request.resource.data.followedAt is timestamp;
+        allow update: if false;
+        allow delete: if owns(userId);
+      }
+    }
+
+    // Social posts are public. Only their author can edit or remove them.
+    match /posts/{postId} {
+      allow get, list: if true;
+      allow create: if signedIn() && validPost(request.auth.uid);
+      allow update: if signedIn()
+        && resource.data.authorId == request.auth.uid
+        && validPost(request.auth.uid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['text']);
+      allow delete: if signedIn() && resource.data.authorId == request.auth.uid;
+    }
+
+    // Everything else stays closed unless a separate rule is deliberately added.
     match /{document=**} {
       allow read, write: if false;
     }

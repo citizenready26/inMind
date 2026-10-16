@@ -3,41 +3,201 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8fb">
-  <meta name="description" content="inMind is a calmer home for your ideas, inner worlds, connections and stories.">
-  <title>inMind — a little more room to be you</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta name="description" content="A little room to pause, make sense of your day, and find your people.">
+  <title>inMind — make a little room for you</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231b1d1b'/%3E%3Ctext x='20' y='26' text-anchor='middle' font-family='Arial' font-size='19' font-weight='700' fill='white'%3Ein%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#home" aria-label="inMind home"><span class="brand-mark">in</span><span>inMind</span></a>
+  <header class="site-header">
+    <a class="wordmark" href="#home" aria-label="inMind home"><span class="mark">in</span><span>inMind</span></a>
     <nav class="main-nav" aria-label="Main navigation">
-      <a href="#mindcosmos">Mindcosmos</a><a href="#social">Social</a><a href="#myspace">MySpace</a><a href="#blogs">Blogs</a>
+      <a href="#home">Home</a>
+      <a href="#myspace">MySpace</a>
+      <a href="#mindcosmos">Mindcosmos</a>
+      <a href="#social">Social</a>
+      <a href="#blogs">Blogs</a>
     </nav>
-    <div class="top-actions"><button class="text-button" id="signInTop">Log in</button><button class="button button-dark button-small" id="joinTop">Get started</button><button class="avatar-button hidden" id="accountButton" aria-label="Account">Y</button></div>
+    <div class="header-actions" id="headerActions">
+      <button class="button button-quiet" id="loginTop" type="button">Log in</button>
+      <button class="button button-dark button-compact" id="signupTop" type="button">Sign up</button>
+      <button class="account-button hidden" id="accountButton" type="button" aria-label="Account options"></button>
+    </div>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
   </header>
+
   <main>
-    <section class="hero" id="home">
-      <div class="hero-copy"><div class="eyebrow"><span class="sparkle">✳</span> A more human corner of the internet</div><h1>A little more<br><span>room to be you.</span></h1><p class="hero-lede">A place for your inner world, your people, and everything you’re becoming. Take a look around first. Stay when it feels right.</p><div class="hero-actions"><a class="button button-dark" href="#explore">Take the tour <span>↓</span></a><button class="button button-light" data-auth="signup">Make it yours <span>↗</span></button></div><div class="quiet-note"><span class="tiny-dot"></span> Browse freely. Create an account only when you’re ready.</div></div>
-      <div class="hero-art" aria-label="Illustration of a peaceful, imaginative world"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="planet planet-large"><span>✦</span></div><div class="planet planet-small"></div><div class="art-card card-note"><span class="card-icon">☼</span><span>your inner universe</span></div><div class="art-card card-chat"><span class="chat-dot"></span> good things grow here</div><div class="art-flower">✿</div><div class="art-star star-a">✦</div><div class="art-star star-b">✧</div><div class="art-caption">somewhere between<br>who you are & who you’re becoming</div></div>
+    <section class="hero page-wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">A calmer corner of the internet</p>
+        <h1>Make a little<br>room for <span>you.</span></h1>
+        <p class="hero-text">A place to pause, make sense of your day, and find your people. Have a look around. Stay when it feels right.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#tour">Take the tour <span aria-hidden="true">↓</span></a>
+          <button class="button button-outline" data-auth="signup" type="button">Create your space</button>
+        </div>
+        <p class="browse-note"><span class="status-dot"></span> Explore freely. Sign up only when you want to save or share.</p>
+      </div>
+      <div class="hero-preview" aria-label="Preview of a personal MySpace dashboard">
+        <div class="preview-top"><span class="preview-label">A little look inside</span><span class="preview-private"><span class="lock-icon" aria-hidden="true">⌑</span> Just for you</span></div>
+        <div class="preview-greeting">A slower kind of progress.</div>
+        <p class="preview-date">YOUR WEEK, AT YOUR PACE</p>
+        <div class="preview-goal"><div><span>Make time to read</span><span>3 of 5 days</span></div><div class="progress-track"><i style="width:60%"></i></div></div>
+        <div class="preview-goal"><div><span>Take a proper lunch break</span><span>2 of 4 days</span></div><div class="progress-track"><i style="width:50%"></i></div></div>
+        <div class="preview-note"><span class="note-mark">“</span><p>Small steps still move you forward.</p><span class="note-caption">A thought to keep</span></div>
+        <span class="preview-foot">MySpace · a private place to begin</span>
+      </div>
     </section>
-    <section class="trust-strip"><span>Made for real life</span><i></i><span>Yours to shape</span><i></i><span>Private by default</span><i></i><span>Better together</span></section>
-    <section class="intro section-wrap" id="explore"><div><p class="eyebrow">COME ON IN</p><h2>Four spaces.<br><span>One you.</span></h2></div><p class="section-intro">Wander through the spaces below. Each one is a different way to think, connect, express yourself, and make this place feel like yours.</p></section>
-    <section class="spaces section-wrap">
-      <article class="space-card cosmos-card" id="mindcosmos"><div class="space-visual cosmos-visual"><div class="cosmos-ring"></div><div class="cosmos-orb">✦</div><span class="cosmos-moon">☾</span><span class="cosmos-spark s1">✧</span><span class="cosmos-spark s2">✦</span><div class="visual-label">A universe of your own</div></div><div class="space-content"><div class="space-kicker">01 <span>✳</span> REFLECT & IMAGINE</div><h3>Mindcosmos</h3><p>Give your thoughts a little space to breathe. Dream, reflect, and map the things that make you, you.</p><div class="preview-quote">“I’m still becoming, and that’s a beautiful place to be.”</div><button class="arrow-link" data-protected="mindcosmos">Step inside <span>↗</span></button></div></article>
-      <article class="space-card social-card" id="social"><div class="space-visual social-visual"><div class="social-sun"></div><div class="social-cloud cloud-a"></div><div class="social-cloud cloud-b"></div><div class="social-bubble bubble-a">hey, you ✨</div><div class="social-bubble bubble-b">made my day ☀</div><div class="social-person person-a">☺</div><div class="social-person person-b">☺</div><div class="visual-label">Good things grow together</div></div><div class="space-content"><div class="space-kicker">02 <span>♡</span> FIND YOUR PEOPLE</div><h3>Social</h3><p>Keep up with your people without all the noise. Share little wins, kind words, and everyday moments.</p><div class="mini-feed"><div class="mini-avatar peach">A</div><span><b>Amara</b> found a new favourite Sunday ritual <small>just now · 2 kind replies</small></span></div><button class="arrow-link" data-protected="social">Meet the community <span>↗</span></button></div></article>
-      <article class="space-card myspace-card" id="myspace"><div class="space-visual myspace-visual"><div class="profile-frame"><div class="profile-sky"><span>✷</span></div><div class="profile-pic">☺</div><div class="profile-lines"><b>your name here</b><i></i><i></i></div><div class="profile-stickers">✿ &nbsp; ✦ &nbsp; ☁</div></div><div class="visual-label">Make yourself at home</div></div><div class="space-content"><div class="space-kicker">03 <span>✿</span> MAKE IT YOURS</div><h3>MySpace</h3><p>Your corner, your colours, your rules. Build a profile that feels like walking into your own room.</p><div class="tag-row"><span>your story</span><span>your interests</span><span>your vibe</span></div><button class="arrow-link" data-protected="myspace">Create your space <span>↗</span></button></div></article>
-      <article class="space-card blogs-card" id="blogs"><div class="space-visual blogs-visual"><div class="blog-sheet"><span class="blog-date">NOTES FROM THE IN-BETWEEN · 04</span><b>On starting<br>before you’re ready</b><i>Some days the brave thing is just showing up as you are.</i><span class="blog-byline">a thought by Jamie</span></div><div class="blog-flower">✿</div><div class="visual-label">Stories that stay with you</div></div><div class="space-content"><div class="space-kicker">04 <span>✎</span> WRITE & SHARE</div><h3>Blogs</h3><p>Long thoughts, small discoveries, stories you want to remember. Make a little room for your words.</p><div class="preview-quote blog-quote">“A reminder that beginnings can be gentle.”</div><button class="arrow-link" data-protected="blogs">Read a little more <span>↗</span></button></div></article>
+
+    <section class="tour-section page-wrap" id="tour">
+      <div class="section-heading tour-heading">
+        <div><p class="eyebrow">TAKE A LOOK AROUND</p><h2>Find your kind of space.</h2></div>
+        <p>Four simple ways to take care of your inner world and make the internet feel a little more human.</p>
+      </div>
+      <div class="tour-grid">
+        <a class="tour-item" href="#myspace"><span class="tour-number">01</span><span class="tour-title">MySpace</span><span class="tour-description">Your goals, thoughts, and progress. Private to you.</span><span class="tour-arrow" aria-hidden="true">↗</span></a>
+        <a class="tour-item" href="#mindcosmos"><span class="tour-number">02</span><span class="tour-title">Mindcosmos</span><span class="tour-description">A breath, a small game, or a moment to reset.</span><span class="tour-arrow" aria-hidden="true">↗</span></a>
+        <a class="tour-item" href="#social"><span class="tour-number">03</span><span class="tour-title">Social</span><span class="tour-description">Share a thought and connect at your own pace.</span><span class="tour-arrow" aria-hidden="true">↗</span></a>
+        <a class="tour-item" href="#blogs"><span class="tour-number">04</span><span class="tour-title">Blogs</span><span class="tour-description">Good words for the days that need them.</span><span class="tour-arrow" aria-hidden="true">↗</span></a>
+      </div>
     </section>
-    <section class="closing section-wrap"><div class="closing-art"><div class="closing-orbit"></div><div class="closing-sun">✦</div><div class="closing-flower">✿</div></div><div class="closing-copy"><p class="eyebrow">NO RUSH, NO PRESSURE</p><h2>Come as you are.<br><span>Grow from there.</span></h2><p>Start with a look around. When you’re ready to save your thoughts, find your people, or create your own space, we’ll be right here.</p><button class="button button-dark" data-auth="signup">Create your free account <span>↗</span></button><div class="quiet-note">Free to join · Your data stays yours</div></div></section>
+
+    <section class="product-section myspace-section" id="myspace">
+      <div class="page-wrap product-layout">
+        <div class="product-copy">
+          <p class="eyebrow">YOUR OWN CORNER</p>
+          <h2>MySpace</h2>
+          <p>Keep your goals close, notice the little wins, and leave a thought for your future self. Your space stays private.</p>
+          <div class="privacy-note"><span aria-hidden="true">⌑</span><span>Your goals and notes are visible only to you.</span></div>
+          <button class="button button-dark" data-auth="signup" data-member-target="myspace" type="button">Make it yours <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="myspace-board">
+          <div class="board-header"><div><p class="eyebrow">MY SPACE</p><h3>A good place to start.</h3></div><span class="board-chip" id="myspaceStatus">Private preview</span></div>
+          <form id="goalForm" class="inline-form gated-form">
+            <label class="visually-hidden" for="goalInput">Add a goal</label>
+            <input id="goalInput" type="text" maxlength="100" placeholder="One thing I want to work towards…">
+            <button class="button button-dark button-compact" type="submit">Add goal</button>
+          </form>
+          <div class="goal-list" id="goalList" aria-live="polite">
+            <article class="goal-row sample-goal"><div class="goal-topline"><span>Make time to read</span><span>3 / 5</span></div><div class="progress-track"><i style="width:60%"></i></div><span class="sample-label">Sample view</span></article>
+            <article class="goal-row sample-goal"><div class="goal-topline"><span>Step outside each day</span><span>2 / 4</span></div><div class="progress-track"><i style="width:50%"></i></div><span class="sample-label">Sample view</span></article>
+          </div>
+          <div class="board-divider"></div>
+          <form id="noteForm" class="note-form gated-form">
+            <label for="noteInput">A thought for today</label>
+            <textarea id="noteInput" rows="2" maxlength="1000" placeholder="Write it down, just for you…"></textarea>
+            <div class="form-end"><span class="form-hint">Private to your account</span><button class="button button-outline button-compact" type="submit">Save thought</button></div>
+          </form>
+          <div class="saved-notes" id="savedNotes" aria-live="polite"></div>
+          <p class="board-foot" id="syncStatus">Sign in to save your goals and sync across your devices.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section cosmos-section" id="mindcosmos">
+      <div class="page-wrap">
+        <div class="section-heading product-heading">
+          <div><p class="eyebrow">A MOMENT FOR YOURSELF</p><h2>Mindcosmos</h2></div>
+          <p>Small ways to slow down. No streaks, scores, or pressure to get it right.</p>
+        </div>
+        <div class="cosmos-grid">
+          <article class="calm-card breathing-card">
+            <div class="calm-card-heading"><div><p class="eyebrow">01 · BREATHE</p><h3>Take one slow breath.</h3></div><span class="calm-icon" aria-hidden="true">○</span></div>
+            <div class="breath-stage" id="breathStage"><div class="breath-orb"><span id="breathCue">Ready</span></div></div>
+            <div class="breath-controls"><span id="breathTimer">1 minute</span><button class="text-action" id="breathButton" type="button">Begin <span aria-hidden="true">→</span></button></div>
+          </article>
+          <article class="calm-card grounding-card">
+            <div class="calm-card-heading"><div><p class="eyebrow">02 · NOTICE</p><h3>Come back to now.</h3></div><span class="calm-icon" aria-hidden="true">⌁</span></div>
+            <p class="grounding-intro">A gentle 5–4–3–2–1 grounding exercise. Take it at your own pace.</p>
+            <div class="grounding-prompt" id="groundingPrompt"><span class="grounding-count">Start here</span><p>Notice five things you can see.</p></div>
+            <button class="text-action" id="groundingButton" type="button">Start the exercise <span aria-hidden="true">→</span></button>
+          </article>
+          <article class="calm-card game-card">
+            <div class="calm-card-heading"><div><p class="eyebrow">03 · PLAY</p><h3>Find the quiet light.</h3></div><span class="calm-icon" aria-hidden="true">✳</span></div>
+            <p class="game-description">A tiny, unhurried game. Tap the light when you spot it.</p>
+            <div class="game-board" id="gameBoard"><span class="game-message" id="gameMessage">No timer. Just notice.</span><button class="game-light hidden" id="gameLight" type="button" aria-label="Find the quiet light"></button></div>
+            <div class="game-footer"><span id="gameScore">0 found</span><button class="text-action" id="gameButton" type="button">Play <span aria-hidden="true">→</span></button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section social-section" id="social">
+      <div class="page-wrap social-layout">
+        <div class="product-copy social-copy">
+          <p class="eyebrow">PEOPLE, WITHOUT THE NOISE</p>
+          <h2>Social</h2>
+          <p>A quieter feed for everyday thoughts, small wins, and kind conversation. Read along first. Join in whenever you like.</p>
+          <button class="button button-dark" data-auth="signup" data-member-target="social" type="button">Join the conversation <span aria-hidden="true">↗</span></button>
+          <div class="community-list" id="peopleList" aria-live="polite">
+            <div class="community-list-head"><span>People to follow</span><span id="peopleCount">Sign in to connect</span></div>
+            <div id="profilesList"><p class="empty-small">Community profiles will appear here.</p></div>
+          </div>
+        </div>
+        <div class="feed-panel">
+          <div class="feed-heading"><div><p class="eyebrow">THE COMMUNITY</p><h3>A little more human.</h3></div><span class="feed-live" id="feedStatus">Open to everyone</span></div>
+          <form class="post-form" id="postForm">
+            <label for="postInput" class="visually-hidden">Share a thought with the community</label>
+            <textarea id="postInput" rows="3" maxlength="500" placeholder="What’s on your mind? Sign in to share a thought."></textarea>
+            <div class="post-form-bottom"><span id="postHint">Be kind. Keep it human.</span><button class="button button-dark button-compact" type="submit">Post</button></div>
+          </form>
+          <div class="feed-list" id="feedList" aria-live="polite">
+            <article class="feed-post editorial-post"><div class="post-avatar">in</div><div class="post-body"><div class="post-meta"><strong>inMind</strong><span>Community prompt</span></div><p>What’s one small thing that made today feel a little lighter?</p><span class="post-date">A question to sit with</span></div></article>
+            <article class="feed-post editorial-post"><div class="post-avatar avatar-soft">in</div><div class="post-body"><div class="post-meta"><strong>inMind</strong><span>A gentle reminder</span></div><p>You don’t have to have it all figured out to take the next small step.</p><span class="post-date">Keep this close if you need it</span></div></article>
+          </div>
+          <p class="feed-foot">Posts are public. Your private MySpace notes never appear here.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section blogs-section" id="blogs">
+      <div class="page-wrap">
+        <div class="section-heading product-heading">
+          <div><p class="eyebrow">NOTES FOR REAL LIFE</p><h2>Blogs</h2></div>
+          <p>Thoughtful reads for the in-between moments. Take what you need; leave the rest.</p>
+        </div>
+        <div class="blog-grid">
+          <article class="blog-card"><p class="blog-category">GROWING AT YOUR PACE · 4 MIN</p><h3>You can begin again on an ordinary Tuesday.</h3><p>There’s no special calendar day required for a fresh start. Sometimes it’s just one kind choice, made quietly.</p><details><summary>Read the note</summary><p>We tend to wait for a clean page: the first of the month, a new season, a version of ourselves with more energy. But a beginning can be much smaller. Drink a glass of water. Open the document. Take the walk around the block. Let the day be ordinary and start inside it.</p><p>A small beginning still counts. It doesn’t need an audience or a perfect plan. It only needs to be yours.</p></details></article>
+          <article class="blog-card"><p class="blog-category">A LITTLE PERSPECTIVE · 3 MIN</p><h3>Progress doesn’t always look like moving forward.</h3><p>Rest, changing your mind, and asking for help belong in the story too.</p><details><summary>Read the note</summary><p>Some weeks, progress is visible. Other weeks it looks like keeping one promise to yourself, or noticing that the old plan no longer fits. Both are useful information.</p><p>You are allowed to adjust the pace. You are allowed to pause without losing the ground you have covered.</p></details></article>
+          <article class="blog-card"><p class="blog-category">LIVING WITH ATTENTION · 5 MIN</p><h3>Make a little room for the good parts.</h3><p>A few ways to notice the moments that usually pass before you’ve had time to name them.</p><details><summary>Read the note</summary><p>At the end of the day, try remembering one thing that felt good in your body: warm sunlight, a shared laugh, the first sip of tea. You don’t have to turn it into a lesson. Just let yourself notice it.</p><p>Attention is a way of being here. A small moment can be enough.</p></details></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section page-wrap">
+      <p class="eyebrow">WHEN YOU’RE READY</p>
+      <h2>Your space is here.</h2>
+      <p>Take your time. Make an account when you want your thoughts and progress to travel with you.</p>
+      <button class="button button-dark" data-auth="signup" type="button">Sign up for inMind <span aria-hidden="true">↗</span></button>
+    </section>
   </main>
-  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">in</span><span>inMind</span></a><span>A softer place to land on the internet.</span><div><a href="#explore">Explore</a><button class="footer-link" id="privacyLink">Privacy</button></div><small>© <span id="year"></span> inMind</small></footer>
-  <div class="toast hidden" id="toast" role="status"></div>
-  <dialog class="auth-dialog" id="authDialog"><button class="dialog-close" id="closeDialog" aria-label="Close">×</button><div class="dialog-mark">in</div><p class="eyebrow" id="authEyebrow">YOUR SPACE IS WAITING</p><h2 id="authTitle">Make it yours.</h2><p class="dialog-copy" id="authCopy">Create an account to save your thoughts and pick up wherever you left off.</p><div class="auth-tabs"><button class="active" data-mode="signup">Create account</button><button data-mode="login">Log in</button></div><form id="authForm"><label>Email address<input id="emailInput" type="email" autocomplete="email" required placeholder="you@example.com"></label><label>Password<input id="passwordInput" type="password" autocomplete="new-password" required minlength="6" placeholder="At least 6 characters"></label><button class="button button-dark auth-submit" type="submit" id="authSubmit">Create account <span>↗</span></button></form><p class="fine-print">By continuing, you agree to be kind to yourself and others.</p></dialog>
-  <dialog class="compose-dialog" id="composeDialog"><button class="dialog-close" id="closeCompose" aria-label="Close">×</button><p class="eyebrow" id="composeKicker">YOUR SPACE</p><h2 id="composeTitle">A thought to keep.</h2><p class="dialog-copy" id="composeDescription">Write something for yourself. It will be saved privately to your account.</p><form id="composeForm"><label>Title<input id="entryTitle" maxlength="100" required placeholder="Give it a name"></label><label id="bodyLabel">Your words<textarea id="entryBody" rows="5" maxlength="5000" required placeholder="Start wherever you are…"></textarea></label><button class="button button-dark auth-submit" type="submit">Save to my space <span>↗</span></button></form></dialog>
+
+  <footer class="site-footer page-wrap">
+    <a class="wordmark" href="#home"><span class="mark">in</span><span>inMind</span></a>
+    <span>A little room to be you.</span>
+    <div class="footer-links"><a href="#tour">Explore</a><button class="text-action" id="privacyLink" type="button">Privacy</button></div>
+    <small>© <span id="year"></span> inMind</small>
+  </footer>
+
+  <dialog class="auth-dialog" id="authDialog" aria-labelledby="authTitle">
+    <button class="dialog-close" id="closeAuth" type="button" aria-label="Close">×</button>
+    <span class="mark dialog-mark">in</span>
+    <p class="eyebrow" id="authEyebrow">YOUR SPACE, WHEN YOU’RE READY</p>
+    <h2 id="authTitle">Make it yours.</h2>
+    <p class="dialog-copy" id="authCopy">Your account saves your private notes and lets you join the community.</p>
+    <div class="auth-tabs" role="tablist" aria-label="Account action"><button class="active" data-mode="signup" type="button" role="tab">Sign up</button><button data-mode="login" type="button" role="tab">Log in</button></div>
+    <form id="authForm">
+      <label id="displayNameLabel">Name to show in Social<input id="displayNameInput" type="text" maxlength="32" autocomplete="nickname" placeholder="Your name" required></label>
+      <label>Email<input id="emailInput" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+      <label>Password<input id="passwordInput" type="password" autocomplete="new-password" minlength="6" placeholder="At least 6 characters" required></label>
+      <button class="button button-dark auth-submit" id="authSubmit" type="submit">Create account <span aria-hidden="true">↗</span></button>
+    </form>
+    <button class="reset-password" id="resetPassword" type="button">Forgot your password?</button>
+    <p class="dialog-foot">Your MySpace stays private. Social posts are public.</p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script type="module" src="app.js"></script>
 </body>
 </html>
